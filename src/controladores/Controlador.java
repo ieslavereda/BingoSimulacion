@@ -104,7 +104,6 @@ public class Controlador implements ActionListener {
 		bingo = new BingoSimulacion(cantidadBolas);
 
 		inicializarTabla();
-
 	}
 
 }

@@ -9,6 +9,7 @@ public class Simulacion {
 
 		Controlador controlador = new Controlador(new JFSimulador());
 		controlador.start();
+		
 
 	}
 
