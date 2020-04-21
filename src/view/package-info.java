@@ -1,8 +1,8 @@
 /**
- * 
+ * Vistas del proyecto
  */
 /**
  * @author Joaquin Vicente
  *
  */
-package vista;
+package view;
