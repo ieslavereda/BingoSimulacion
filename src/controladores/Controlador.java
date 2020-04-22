@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Vector;
+
 import javax.swing.table.DefaultTableModel;
 
 import common.BingoSimulacion;
@@ -45,14 +47,48 @@ public class Controlador implements ActionListener {
 
 		// Carga de datos
 		cargarDatos();
+		
+		Vector<String> row;
+		Vector<Bola> bolasSacadas;
+		int aciertos;
+		int exito = 0;
 
 		// Completar el proceso de simulacion
 		
+		for(int simulacion=1;simulacion<=simulaciones;simulacion++) {
+			
+			row = new Vector<String>();
+			
+			row.add(String.valueOf(simulacion));
+			
+			bolasSacadas = bingo.sacarNumeroBolas(bolasAExtraer);
+			
+			for (Bola bola : bolasSacadas)
+				row.add(String.valueOf(bola.getNumero()));
+			
+				
+			// acierto
+			bolasSacadas.retainAll(temasEstudiados);
+			aciertos = bolasSacadas.size();
+					
+			row.add(String.valueOf(aciertos!=0));
+			
+			// cuantos aciertos
+			row.add(String.valueOf(aciertos));
+			
+			// añadir la fila a la tabla
+			((DefaultTableModel)vista.getTable().getModel()).addRow(row);
+			
+			if(aciertos>0)
+				exito++;
+			
+			bingo.inicializar();
+		}
 		
 		
 		
 		// Mostrar resumen final
-		
+		mostrarResumen(exito);
 		
 
 	}
